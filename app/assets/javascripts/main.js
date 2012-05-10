@@ -41,14 +41,16 @@ function guessNumber(){
 	  updateGuesses();
    }else if(guess > correctNum){
     msgMaybe("Too high!");
+	updateGuesses();
 	//updateHighScores(scores);
   }else if(guess < correctNum){
     msgMaybe("Too low!!!");
+	updateGuesses();
   
   }else{
     winparty();
   }
-  updateGuesses();
+  
   
   if(guessesLeft === 0){
     sadparty();

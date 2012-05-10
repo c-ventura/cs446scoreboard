@@ -16,8 +16,8 @@ $(function() {
 });
 
 function populateHighScores() {
-  //$.get('http://simple-earth-5028.herokuapp.com/highscores', function(scores) {
-  $.get('http://localhost:3000/highscores', function(scores) {
+  $.get('http://simple-earth-5028.herokuapp.com/highscores', function(scores) {
+  //$.get('http://localhost:3000/highscores', function(scores) {
 		$('div#highScores').empty();
 		for(var i = 0; i < scores.length; ++i) {
 			$('div#highScores').append("<p>" + scores[i].name + " " + scores[i].score + "</p>");

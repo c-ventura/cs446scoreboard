@@ -1,5 +1,5 @@
 var guessesLeft = 10;
-var highScores = new Array([9, "HarryJamesPotter"], [3, "ZedCthulhu"], [2, "NearlyDied"]);
+//var highScores = new Array([9, "HarryJamesPotter"], [3, "ZedCthulhu"], [2, "NearlyDied"]);
 var correctNum = Math.floor(Math.random()*100) + 1;
 var guess = 1;
 
@@ -8,17 +8,20 @@ var guess = 1;
 
 $(function() {
   updateScore(guessesLeft);
-  populateHighScores(highScores);
+  populateHighScores();
   //updateGuesses(guessesLeft);
   //guessNumber(guess);
   //winparty();
   
 });
 
-function populateHighScores(scores) {
-  for (var i = 0; i < scores.length; ++i) {
-    $('div#highScores').append("<p>" + scores[i][0] + " " + scores[i][1] + "</p>");
-  }
+function populateHighScores() {
+  $.get('/highscores', function(scores) {
+		$('div#highScores').empty();
+		for(var i = 0; i < scores.length; ++i) {
+			$('div#highScores').append("<p>" + scores[i].name + " " + scores[i].score + "</p>");
+		}
+	})
 }
 
 function updateScore(score) {
@@ -56,8 +59,9 @@ function winparty(){
   playAgain();
   
   var winner = prompt("Champion's Name?", "");
-  var winnerList = new Array([guessesLeft, winner]);
-  populateHighScores(winnerList);
+  $.post('/highscores', {highscore: {name: winner, score: guessesLeft}})
+  
+  populateHighScores();
 }
 
 function sadparty(){

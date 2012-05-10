@@ -1,13 +1,16 @@
 class HighscoresController < ApplicationController
   # GET /highscores
   # GET /highscores.json
+  respond_to :json
+  
   def index
     @highscores = Highscore.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @highscores }
-    end
+    
+	respond_with @highscores
+    #respond_to do |format|
+    #  format.html # index.html.erb
+    #  format.json { render json: @highscores }
+    #end
   end
 
   # GET /highscores/1

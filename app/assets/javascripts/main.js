@@ -16,7 +16,7 @@ $(function() {
 });
 
 function populateHighScores() {
-  $.get('/highscores', function(scores) {
+  $.get('http://highscores-ventura.herokuapp.com/', function(scores) {
 		$('div#highScores').empty();
 		for(var i = 0; i < scores.length; ++i) {
 			$('div#highScores').append("<p>" + scores[i].name + " " + scores[i].score + "</p>");

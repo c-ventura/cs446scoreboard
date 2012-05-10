@@ -4,8 +4,8 @@ class HighscoresController < ApplicationController
   respond_to :json
   
   def index
-    @highscores = Highscore.find(:all, order: "score").reverse
-    
+    #@highscores = Highscore.find(:all, order: "score").reverse
+    @highscores = Highscore.select('name, score').order('score DESC')
 	respond_with @highscores
     #respond_to do |format|
     #  format.html # index.html.erb

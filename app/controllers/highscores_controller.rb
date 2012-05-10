@@ -4,7 +4,7 @@ class HighscoresController < ApplicationController
   respond_to :json
   
   def index
-    @highscores = Highscore.all
+    @highscores = Highscore.find(:all, order: "score").reverse
     
 	respond_with @highscores
     #respond_to do |format|
